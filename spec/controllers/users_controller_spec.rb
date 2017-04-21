@@ -34,15 +34,17 @@ RSpec.describe UsersController, type: :controller do
     context "with valid params" do
       it "redirects user to user show" do
         post :create, user: { username: 'user', password: 'password' }
-        expect(response).to redirect_to(user_url(user))
+        expect(response).to redirect_to(user_url(User.last))
       end
     end
   end
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+      post :create, user: { username: 'user', password: 'password' }
+
+      get :show, id: User.last.id
+      expect(response).to render_template(:show)
     end
   end
 

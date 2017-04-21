@@ -39,7 +39,7 @@ RSpec.describe User, type: :model do
         expect(user.session_token).to_not be nil
       end
 
-      describe 'reset_session token!' do
+      describe 'reset session token!' do
         it 'sets a new session token on the user' do
           old = user.session_token
           user.reset_session_token!
